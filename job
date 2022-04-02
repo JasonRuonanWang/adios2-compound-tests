@@ -1,0 +1,6 @@
+#!/bin/bash
+#BSUB -P csc143
+#BSUB -W 10
+#BSUB -nnodes 50
+
+jsrun -n 2000 ./writer
