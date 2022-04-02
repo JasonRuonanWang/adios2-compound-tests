@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         adios2::ADIOS adios;
         adios2::IO io = adios.DeclareIO("TestIO");
 
-        adios2::Engine engine = io.Open("Test", adios2::Mode::Write);
+        adios2::Engine engine = io.Open("compound", adios2::Mode::Write);
         auto varFloats = io.DefineVariable<float>("varFloats", shape, start, count);
 
         size_t datasize = std::accumulate(count.begin(), count.end(), 1, std::multiplies<size_t>());
@@ -59,9 +59,7 @@ int main(int argc, char *argv[])
 
         if(worldRank == 0)
         {
-            std::cout << "===============================================================" << std::endl;
             std::cout << "Compound Array Size " << arraySize * variables << ", Variables " << 1 << ", Writers " << worldSize << ", time " << duration.count() << " seconds, " << steps << " steps, " << "total data size " << totalDatasize / 1000000000 << " GB, data rate " <<  totalDatasize / duration.count() / 1000000000 << " GB/s" << std::endl;
-            std::cout << "===============================================================" << std::endl;
         }
     }
 
@@ -77,7 +75,7 @@ int main(int argc, char *argv[])
         adios2::ADIOS adios;
         adios2::IO io = adios.DeclareIO("TestIO");
 
-        adios2::Engine engine = io.Open("Test", adios2::Mode::Write);
+        adios2::Engine engine = io.Open("basic", adios2::Mode::Write);
 
         std::vector<adios2::Variable<float>> vars;
 
@@ -112,12 +110,11 @@ int main(int argc, char *argv[])
 
         if(worldRank == 0)
         {
-            std::cout << "===============================================================" << std::endl;
             std::cout << "Basic Array Size " << arraySize << ", Variables " << variables << ", Writers " << worldSize << ", time " << duration.count() << " seconds, " << steps << " steps, " << "total data size " << totalDatasize / 1000000000 << " GB, data rate " <<  totalDatasize / duration.count() / 1000000000 << " GB/s" << std::endl;
-            std::cout << "===============================================================" << std::endl;
         }
     }
 
+    std::cout << "===============================================================" << std::endl;
 
     MPI_Finalize();
 

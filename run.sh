@@ -1,2 +1,15 @@
-
-./writer 
+./writer 4 10 1000
+./writer 8 10 1000
+./writer 16 10 1000
+./writer 32 10 1000
+./writer 64 10 1000
+./writer 128 10 1000
+./writer 256 10 1000
+./writer 512 10 1000
+./writer 1024 10 1000
+./writer 2048 10 1000
+./writer 4096 10 1000
+./writer 8192 10 1000
+./writer 16384 10 1000
+./writer 32768 10 1000
+./writer 65536 10 1000
