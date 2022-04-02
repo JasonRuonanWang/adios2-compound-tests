@@ -27,8 +27,6 @@ int main(int argc, char *argv[])
         adios2::Dims count({1, variables, arraySize});
 
         auto timerStart = std::chrono::system_clock::now();
-        auto timerNow = std::chrono::system_clock::now();
-        std::chrono::duration<double> duration;
 
         adios2::ADIOS adios;
         adios2::IO io = adios.DeclareIO("TestIO");
@@ -41,8 +39,6 @@ int main(int argc, char *argv[])
 
         for(size_t step = 0; step < steps; ++step)
         {
-            timerNow = std::chrono::system_clock::now();
-            duration = timerNow - timerStart;
             engine.BeginStep();
             engine.Put(varFloats, vecFloats.data());
             engine.EndStep();
@@ -52,8 +48,7 @@ int main(int argc, char *argv[])
 
         size_t totalDatasize = steps * std::accumulate(shape.begin(), shape.end(), sizeof(float), std::multiplies<size_t>());
 
-        timerNow = std::chrono::system_clock::now();
-        duration = timerNow - timerStart;
+        std::chrono::duration<double> duration = std::chrono::system_clock::now() - timerStart;
 
         MPI_Barrier(MPI_COMM_WORLD);
 
@@ -69,8 +64,6 @@ int main(int argc, char *argv[])
         adios2::Dims count({1, arraySize});
 
         auto timerStart = std::chrono::system_clock::now();
-        auto timerNow = std::chrono::system_clock::now();
-        std::chrono::duration<double> duration;
 
         adios2::ADIOS adios;
         adios2::IO io = adios.DeclareIO("TestIO");
@@ -89,8 +82,6 @@ int main(int argc, char *argv[])
 
         for(size_t step = 0; step < steps; ++step)
         {
-            timerNow = std::chrono::system_clock::now();
-            duration = timerNow - timerStart;
             engine.BeginStep();
             for(auto &var : vars)
             {
@@ -103,8 +94,7 @@ int main(int argc, char *argv[])
 
         size_t totalDatasize = steps * variables * std::accumulate(shape.begin(), shape.end(), sizeof(float), std::multiplies<size_t>());
 
-        timerNow = std::chrono::system_clock::now();
-        duration = timerNow - timerStart;
+        std::chrono::duration<double> duration = std::chrono::system_clock::now() - timerStart;
 
         MPI_Barrier(MPI_COMM_WORLD);
 
