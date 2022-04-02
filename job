@@ -3,4 +3,4 @@
 #BSUB -W 10
 #BSUB -nnodes 50
 
-jsrun -n 2000 ./writer
+jsrun -n 2000 bash ./run.sh
