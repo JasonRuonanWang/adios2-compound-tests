@@ -101,10 +101,9 @@ int main(int argc, char *argv[])
         if(worldRank == 0)
         {
             std::cout << "Basic Array Size " << arraySize << ", Variables " << variables << ", Writers " << worldSize << ", time " << duration.count() << " seconds, " << steps << " steps, " << "total data size " << totalDatasize / 1000000000 << " GB, data rate " <<  totalDatasize / duration.count() / 1000000000 << " GB/s" << std::endl;
+            std::cout << "===============================================================" << std::endl;
         }
     }
-
-    std::cout << "===============================================================" << std::endl;
 
     MPI_Finalize();
 

@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH -A csc303
+#SBATCH -J compound
+#SBATCH -o compound.out
+#SBATCH -t 00:05:00
+#SBATCH -p batch
+#SBATCH -N 1
+
+srun -N1 -n64 bash ./run.sh
